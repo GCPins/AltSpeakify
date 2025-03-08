@@ -7,8 +7,9 @@ chrome.runtime.onInstalled.addListener(async () => {
     });
 });
 
-// this doesn't work lol
 chrome.commands.onCommand.addListener((command, tab) => {
+
+    // this doesn't work lol. thanks v3.
     if (command === "stopAudio") {
         console.log("STOP AUDIO!");
         chrome.scripting.executeScript({
@@ -26,12 +27,17 @@ chrome.commands.onCommand.addListener((command, tab) => {
 
     if (command === "describeImg") {
 
-
         chrome.scripting.executeScript({
             target: { tabId: tab.id },
             function: () => {
                 const img = document.querySelector("img:hover");
-
+                if (!img) {
+                    console.log("NOT AN IMAGE!");
+                    let notif = new Audio(chrome.runtime.getURL("../sounds/error.mp3"));
+                    notif.volume = 0.5;
+                    notif.play();
+                    return;
+                }
                 if (img) {
                     let notif = new Audio(chrome.runtime.getURL("../sounds/waiting.mp3"));
                     notif.volume = 0.5;
@@ -51,6 +57,9 @@ chrome.commands.onCommand.addListener((command, tab) => {
                         console.log(astKey, labKey, voiceID);
                         if (!astKey || !labKey) {
                             console.log("NO API KEYS! Cannot play audio!");
+                            let errNot = new Audio(chrome.runtime.getURL("../sounds/error.mp3"));
+                            errNot.volume = 0.5;
+                            errNot.play();
                             return;
                         }
 
@@ -74,8 +83,8 @@ chrome.commands.onCommand.addListener((command, tab) => {
                                 'Content-Type': 'application/json'
                             },
                             mode: 'cors'
-                        }).then(response => response.json()) 
-                            .then(data => { 
+                        }).then(response => response.json())
+                            .then(data => {
                                 capt = data.caption_GPTS.replace(/"/g, '');
 
                                 const options = {
@@ -142,10 +151,10 @@ async function loadSavedOpt() {
 
     if (!astKey || !labKey) {
         console.log("NO API KEYS! Cannot play audio!");
-        return { 'astKey': '', 'labKey': '', 'voiceId': ''}; 
+        return { 'astKey': '', 'labKey': '', 'voiceId': '' };
     }
 
-    return { 'astKey': astKey, 'labKey': labKey, 'voiceId':  voiceID};
+    return { 'astKey': astKey, 'labKey': labKey, 'voiceId': voiceID };
 }
 
 chrome.contextMenus.onClicked.addListener(async (callback) => {
@@ -218,7 +227,7 @@ async function getDesc(
         }
 
         const data = await response.json();
-        await playSound();
+        //await playSound();
 
         console.log(JSON.stringify(data.caption_GPTS));
 
