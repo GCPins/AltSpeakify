@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "version": "0.1",
+    "name": "AltSpeakify",
+    "description": "No alt text? No problem - just AltSpeakify it! This extension helps those who are visually impaired better navigate the web.",
+    "action": {
+        "default_popup": "html/index.html",
+        "default_title": "🔊 AltSpeakify Extension 🔊"
+    }, 
+    "icons": {
+        "16": "icon/logo-16.png"
+    }
+}
