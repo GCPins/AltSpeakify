@@ -12,7 +12,7 @@ document.addEventListener('mouseover', (event) => {
     if (element.tagName === 'IMG' && hasInteracted) {
         console.log("image hovered!", element.src);
 
-        const audio = new Audio(chrome.runtime.getURL("../tone.mp3"));
+        const audio = new Audio(chrome.runtime.getURL("../sounds/tone.mp3"));
         audio.play().catch(error => {
             console.error("Error playing the audio:", error);
         });

@@ -5,7 +5,8 @@
     "description": "No alt text? No problem - just AltSpeakify it! This extension helps those who are visually impaired better navigate the web.",
     "action": {
         "default_popup": "html/popup.html",
-        "default_title": "AltSpeakify 🔊"
+        "default_title": "AltSpeakify 🔊",
+        "default_icon": "icon/logo-80.png"
     },
     "icons": {
         "64": "icon/logo-64.png",
@@ -15,13 +16,14 @@
     "permissions": [
         "storage",
         "contextMenus",
-        "scripting"
+        "scripting",
+        "offscreen"
     ],
     "host_permissions": [
         "<all_urls>"
     ],
     "commands": {
-        "cmdTest": {
+        "describeImg": {
             "suggested_key": "Ctrl+Shift+Y",
             "description": "Describe test"
         }
@@ -42,7 +44,9 @@
     "web_accessible_resources": [
         {
             "resources": [
-                "tone.mp3"
+                "sounds/tone.mp3",
+                "sounds/waiting.mp3",
+                "sounds/error.mp3"
             ],
             "matches": [
                 "<all_urls>"
