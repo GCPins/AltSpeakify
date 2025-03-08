@@ -17,10 +17,8 @@
         "storage",
         "contextMenus",
         "scripting",
-        "offscreen"
-    ],
-    "host_permissions": [
-        "<all_urls>"
+        "offscreen",
+        "activeTab"
     ],
     "commands": {
         "describeImg": {
