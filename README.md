@@ -6,7 +6,9 @@
 ## Installation
 **1.) Download the repository**
 
-**2.) Drag/drop into the** `"chrome://extensions"` **page**
+**2.) Click "Load Unpacked" on the ** `"chrome://extensions"` **page, and select the repository folder**
+
+> Alternatively, download as a ZIP and drag/drop onto the `chrome://extensions` page!
 
  ## Configuration
 > YOU MUST COMPLETE THE FOLLOWING STEPS FOR THE EXTENSION TO FUNCTION!!!
