@@ -1,9 +1,9 @@
 const saveSettings = () => {
-    console.log("Saving settings...");
+    //console.log("Saving settings...");
     let asticaAPIkey = document.getElementById('astica-API-key').value;
     let labsAPIkey = document.getElementById('lab-API-key').value;
 
-    console.log(asticaAPIkey, labsAPIkey);
+    //console.log(asticaAPIkey, labsAPIkey);
 
     // if (asticaAPIkey === '' || labsAPIkey === '') {
     //     let status = document.getElementById('status');
@@ -36,9 +36,8 @@ const restoreOptions = () => {
         (items) => {
             let astAPIkey = document.getElementById('astica-API-key');
             let labAPIkey = document.getElementById('lab-API-key');
-            console.log(items); 
+            //console.log(items); 
             if ((!items.astkey) && (!items.labkey)) {
-                console.log('test');
                 document.getElementById('clear-button').disabled = true;
                 document.getElementById('astValid').textContent = "ASTICA AI APIKEY NOT SET!";
                 document.getElementById('labValid').textContent = "11LABS APIKEY NOT SET!";
@@ -60,7 +59,7 @@ const restoreOptions = () => {
 }
 
 const loadSettings = () => {
-    console.log("Loading settings...");
+    //console.log("Loading settings...");
     restoreOptions();
 }
 
@@ -75,7 +74,7 @@ const revealPassAst = () => {
 
 const revealPassLab = () => {
     let elem = document.getElementById('lab-API-key');
-    console.log(elem);
+    //console.log(elem);
     if (elem.type === 'password') {
         elem.type = 'text';
     } else {
@@ -84,7 +83,7 @@ const revealPassLab = () => {
 }
 
 const clearSettings = () => {
-    console.log("Clearing settings...");
+    //console.log("Clearing settings...");
     document.getElementById('clear-button').disabled = true;
     document.getElementById('astValid').textContent = "ASTICA AI APIKEY NOT SET!";
     document.getElementById('labValid').textContent = "11LABS APIKEY NOT SET!";
