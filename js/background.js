@@ -95,7 +95,7 @@ chrome.contextMenus.onClicked.addListener(async (callback) => {
     if (callback.mediaType == "image") {
 
         console.log("IMG: " + callback.srcUrl);
-        await playSound("../sounds/waiting.mp3");
+        await playSound("../sounds/waiting.mp3", 0.5, 1);
 
         let cap = await getDesc(callback.srcUrl);
         //console.log("Caption: " + cap);
@@ -108,7 +108,7 @@ chrome.contextMenus.onClicked.addListener(async (callback) => {
     }
 });
 
-async function playSound(source = "../sounds/tone.mp3", volume = 1, speed = 1.5) {
+async function playSound(source = "../sounds/tone.mp3", volume = 0.3, speed = 1.5) {
     await createOffscreen();
     console.log("playing sound");
     await chrome.runtime.sendMessage({ play: { source, volume, speed } });
