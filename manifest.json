@@ -25,7 +25,11 @@
     "commands": {
         "describeImg": {
             "suggested_key": "Ctrl+Shift+Y",
-            "description": "Describe test"
+            "description": "AltSpeakify the image!"
+        },
+        "stopAudio": {
+            "suggested_key": "Ctrl+Shift+S",
+            "description": "Stop all AltSpeakify audio."
         }
     },
     "background": {

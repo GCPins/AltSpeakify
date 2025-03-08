@@ -4,7 +4,6 @@ document.querySelector('#settings_button').addEventListener('click', function ()
       } else {
         window.open(chrome.runtime.getURL('../html/settings.html'));
       }
-    //window.open(chrome.runtime.getURL('../html/settings.html'));
 });
 
 document.querySelector('#about_button').addEventListener('click', function () {
