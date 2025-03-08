@@ -40,13 +40,15 @@ chrome.commands.onCommand.addListener((command, tab) => {
 
                 let astKey;
                 let labKey;
+                let voiceID;
                 chrome.storage.sync.get(
-                    { astkey: '', labkey: '' },
+                    { astkey: '', labkey: '', voiceid: '' },
                     (items) => {
                         astKey = items.astkey;
                         labKey = items.labkey;
+                        voiceID = items.voiceid;
 
-                        console.log(astKey, labKey);
+                        console.log(astKey, labKey, voiceID);
                         if (!astKey || !labKey) {
                             console.log("NO API KEYS! Cannot play audio!");
                             return;
@@ -88,7 +90,13 @@ chrome.commands.onCommand.addListener((command, tab) => {
                                 options.headers["xi-api-key"] = labKey;
                                 console.log("11labs: ", JSON.stringify(options.headers));
 
-                                fetch("https://api.elevenlabs.io/v1/text-to-speech/CwhRBWXzGAHq8TQ4Fs17?output_format=mp3_22050_32", options)
+                                let finalVoiceID;
+                                if (!voiceID) {
+                                    finalVoiceID = 'CwhRBWXzGAHq8TQ4Fs17';
+                                } else {
+                                    finalVoiceID = voiceID;
+                                }
+                                fetch("https://api.elevenlabs.io/v1/text-to-speech/" + finalVoiceID + "?output_format=mp3_22050_32", options)
                                     .then(response => {
                                         if (!response.ok) {
                                             return Promise.reject(`AN ERROR HAS APPEARED (${response.status}): ${JSON.stringify(response)}`);
@@ -124,19 +132,20 @@ chrome.commands.onCommand.addListener((command, tab) => {
 });
 
 async function loadSavedOpt() {
-    const items = await chrome.storage.sync.get({ astkey: '', labkey: '' });
+    const items = await chrome.storage.sync.get({ astkey: '', labkey: '', voiceid: '' });
 
     let astKey = items.astkey;
     let labKey = items.labkey;
+    let voiceID = items.voiceid;
 
-    console.log(astKey, labKey);
+    console.log(astKey, labKey, voiceID);
 
     if (!astKey || !labKey) {
         console.log("NO API KEYS! Cannot play audio!");
-        return { 'astKey': '', 'labKey': '' }; 
+        return { 'astKey': '', 'labKey': '', 'voiceId': ''}; 
     }
 
-    return { 'astKey': astKey, 'labKey': labKey };
+    return { 'astKey': astKey, 'labKey': labKey, 'voiceId':  voiceID};
 }
 
 chrome.contextMenus.onClicked.addListener(async (callback) => {
@@ -150,9 +159,10 @@ chrome.contextMenus.onClicked.addListener(async (callback) => {
         console.log("api keys:", JSON.stringify(tknObj));
         let astKey = tknObj.astKey;
         let labKey = tknObj.labKey;
+        let voice_id = tknObj.voiceId;
 
         let cap = await getDesc(callback.srcUrl, astKey);
-        await speak(cap, 1.5, labKey);
+        await speak(cap, 1.5, labKey, voice_id);
     } else {
         playSound("../sounds/error.mp3", 0.5);
     }
@@ -223,7 +233,8 @@ async function getDesc(
 async function speak(
     text = "This is a placeholder, and will be converted, by an AI, to clear and understandable human speech!",
     speed = 1.5,
-    apikey = ''
+    apikey = '',
+    voice_id = 'CwhRBWXzGAHq8TQ4Fs17'
 ) {
     const options = {
         method: "POST",
@@ -238,7 +249,7 @@ async function speak(
 
     try {
         let response = await fetch(
-            "https://api.elevenlabs.io/v1/text-to-speech/CwhRBWXzGAHq8TQ4Fs17?output_format=mp3_22050_32",
+            "https://api.elevenlabs.io/v1/text-to-speech/" + voice_id + "?output_format=mp3_22050_32",
             options
         );
 

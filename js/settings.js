@@ -2,12 +2,13 @@ const saveSettings = () => {
     //console.log("Saving settings...");
     let asticaAPIkey = document.getElementById('astica-API-key').value;
     let labsAPIkey = document.getElementById('lab-API-key').value;
+    let voiceID = document.getElementById('voice-id').value;
 
     document.getElementById('clear-button').disabled = false;
     document.getElementById('astValid').textContent = "";
     document.getElementById('labValid').textContent = "";
     chrome.storage.sync.set(
-        { astkey: asticaAPIkey, labkey: labsAPIkey },
+        { astkey: asticaAPIkey, labkey: labsAPIkey, voiceid: voiceID },
         () => {
             let status = document.getElementById('status');
             status.textContent = 'Options saved successfully!';
@@ -21,12 +22,13 @@ const saveSettings = () => {
 
 const restoreOptions = () => {
     chrome.storage.sync.get(
-        {astkey: '', labkey: ''},
+        {astkey: '', labkey: '', voiceid: ''},
         (items) => {
             let astAPIkey = document.getElementById('astica-API-key');
             let labAPIkey = document.getElementById('lab-API-key');
+            let voiceID = document.getElementById('voice-id');
 
-            if ((!items.astkey) && (!items.labkey)) {
+            if ((!items.astkey) && (!items.labkey) && (!items.voiceid)) {
                 document.getElementById('clear-button').disabled = true;
                 document.getElementById('astValid').textContent = "ASTICA AI APIKEY NOT SET!";
                 document.getElementById('labValid').textContent = "11LABS APIKEY NOT SET!";
@@ -43,6 +45,7 @@ const restoreOptions = () => {
             }
             astAPIkey.value = items.astkey;
             labAPIkey.value = items.labkey;
+            voiceID.value = items.voiceid;
         }
     )
 }
@@ -73,6 +76,7 @@ const clearSettings = () => {
     document.getElementById('clear-button').disabled = true;
     document.getElementById('astValid').textContent = "ASTICA AI APIKEY NOT SET!";
     document.getElementById('labValid').textContent = "11LABS APIKEY NOT SET!";
+    document.getElementById('voice-id').value = '';
     document.getElementById('astica-API-key').value = '';
     document.getElementById('lab-API-key').value = '';
     saveSettings();
