@@ -1,11 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <title>AltSpeakify 🔊 - Settings</title>
 </head>
+
 <body>
-    Welcome to the settings page!
+    <div>
+        <p>
+            Welcome to the <a href="https://github.com/GCPins/AltSpeakify" target="_blank">AltSpeakify 🔊</a> settings
+            page!
+            <b>Please fill out the configuration below for the extension to function
+                correctly!</b>
+        </p>
+        <p>
+        <form>
+            <label for="astica-API-key"><a href="https://astica.ai/" target="_blank">ASTICA</a> API KEY:</label>
+            <input type="password" id="astica-API-key"> 
+            <input type="checkbox" id="show-astica">Show
+            <br>
+            <br>
+            <label for="labs-API-key"><a href="https://elevenlabs.io" target="_blank">ELEVENLABS</a> API KEY</label>
+            <input type="password" id="lab-API-key">
+            <input type="checkbox" id="show-lab">Show
+        </form>
+        <br>
+        <button class="button-styled" id="save-button">Save</button><b id="status"></b>
+        <button class="button-styled" id="clear-button" disabled=true>Reset</button>
+        <br>
+        <br>
+        <b id="astValid" style="color:red;"></b>
+        <br>
+        <b id="labValid" style="color:red;"></b>
+        <br>
+    </div>
 </body>
+<script src="../js/settings.js"></script>
+
 </html>
