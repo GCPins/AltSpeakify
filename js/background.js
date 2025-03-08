@@ -3,11 +3,8 @@ chrome.runtime.onInstalled.addListener(async () => {
         id: "descImg",
         title: "Describe",
         type: "normal",
-        contexts: ["image"]
+        contexts: ["all"]
     });
-});
-chrome.contextMenus.onClicked.addListener(async (callback) => {
-    //console.log("IMG URL: " + callback.srcUrl);
 });
 
 chrome.commands.onCommand.addListener((command, tab) => {
@@ -93,10 +90,11 @@ chrome.commands.onCommand.addListener((command, tab) => {
     }
 });
 
-
 chrome.contextMenus.onClicked.addListener(async (callback) => {
+
     if (callback.mediaType == "image") {
-        //console.log("IMG: " + callback.srcUrl);
+
+        console.log("IMG: " + callback.srcUrl);
         await playSound("../sounds/waiting.mp3");
 
         let cap = await getDesc(callback.srcUrl);
@@ -110,26 +108,26 @@ chrome.contextMenus.onClicked.addListener(async (callback) => {
     }
 });
 
-async function playSound(source = "../sounds/note.mp3", volume = 1, speed = 1.5) {
+async function playSound(source = "../sounds/tone.mp3", volume = 1, speed = 1.5) {
     await createOffscreen();
+    console.log("playing sound");
     await chrome.runtime.sendMessage({ play: { source, volume, speed } });
 }
 
 // Create the offscreen document if it doesn't already exist
 async function createOffscreen() {
     if (await chrome.offscreen.hasDocument()) {
-        ////console.log("Document exists...");
         return;
     }
     await chrome.offscreen.createDocument({
         url: "../html/offscreen.html",
         reasons: ["AUDIO_PLAYBACK"],
-        justification: "Audio playback (testing)...", // details for using the API
+        justification: "Audio playback (AltSpeakify)..."
     });
 }
 
 async function getDesc(
-    source = ""
+    source = "https://www.astica.org/inputs/analyze_3.jpg"
 ) {
     var asticaAPI_endpoint = "https://vision.astica.ai/describe";
     var asticaAPI_payload = {

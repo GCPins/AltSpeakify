@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "version": "0.1",
+    "version": "0.7",
     "name": "AltSpeakify 🔊",
     "description": "No alt text? No problem - just AltSpeakify it! This extension helps those who are visually impaired better navigate the web.",
     "action": {
