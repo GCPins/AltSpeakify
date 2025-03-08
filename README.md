@@ -17,5 +17,7 @@
 
 **2.) Set the 11Labs API key in the "Settings" page** (https://elevenlabs.io)
 
+> Optionally, set the "Voice ID" for the ElevenLabs voice profile you want to use.
+
 
  
