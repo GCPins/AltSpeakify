@@ -5,6 +5,7 @@
 
  ## Configuration
 > YOU MUST COMPLETE THE FOLLOWING STEPS FOR THE EXTENSION TO FUNCTION!!!
+
 **1.) Set the Astica API key in the "Settings" page
 2.) Set the 11Labs API key in the "Settings" page** 
 
