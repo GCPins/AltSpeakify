@@ -11,7 +11,7 @@
 > Alternatively, download as a ZIP and drag/drop onto the `chrome://extensions` page!
 
  ## Configuration
-> YOU MUST COMPLETE THE FOLLOWING STEPS FOR THE EXTENSION TO FUNCTION!!!
+> [!WARNING] YOU MUST COMPLETE THE FOLLOWING STEPS FOR THE EXTENSION TO FUNCTION!!!
 
 **1.) Set the Astica API key in the "Settings" page** (https://astica.ai)
 
