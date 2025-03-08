@@ -14,17 +14,16 @@
     "options_page": "html/settings.html",
     "permissions": [
         "storage",
-        "contextMenus"
+        "contextMenus",
+        "scripting"
     ],
     "host_permissions": [
-      "<all_urls>"
+        "<all_urls>"
     ],
     "commands": {
-        "imgDesc": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+Y"
-            },
-            "description": "Describe the image currently being hovered over."
+        "cmdTest": {
+            "suggested_key": "Ctrl+Shift+Y",
+            "description": "Describe test"
         }
     },
     "background": {
