@@ -20,5 +20,6 @@
 
 > Optionally, set the "Voice ID" for the ElevenLabs voice profile you want to use.
 
-
+# Demo Video
+You can find a demo of the extension [here](https://youtu.be/d7r-bKTH-Oc)
  
