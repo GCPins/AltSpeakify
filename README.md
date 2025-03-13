@@ -22,5 +22,6 @@
 
 # Demo Video
 You can find a demo of the extension [here](https://youtu.be/d7r-bKTH-Oc) (or click the image below)
+
 [![Thumbnail of AltSpeakify demo video](https://img.youtube.com/vi/d7r-bKTH-Oc/0.jpg)](https://www.youtube.com/watch?v=d7r-bKTH-Oc)
  
